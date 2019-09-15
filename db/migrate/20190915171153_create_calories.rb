@@ -4,7 +4,7 @@ class CreateCalories < ActiveRecord::Migration[5.2]
       t.decimal :value
       t.string :type_value
       t.text :comment
-      t.references :user, foreign_key: true
+      t.integer :user_id
 
       t.timestamps
     end
