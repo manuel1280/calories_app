@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @calory.value %>
+</p>
+
+<p>
+  <strong>Type value:</strong>
+  <%= @calory.type_value %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @calory.comment %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @calory.user %>
+</p>
+
+<%= link_to 'Edit', edit_calory_path(@calory) %> |
+<%= link_to 'Back', calories_path %>

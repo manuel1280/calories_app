@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 9.99
+  type_value: MyString
+  comment: MyText
+  user: one
+
+two:
+  value: 9.99
+  type_value: MyString
+  comment: MyText
+  user: two
