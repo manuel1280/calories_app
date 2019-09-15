@@ -5,9 +5,8 @@ class CaloriesController < ApplicationController
   # GET /calories
   # GET /calories.json
   def index
-    @calories = Calory.all
+    @calories = current_user.calories.all.order("created_at desc")
   end
-
   # GET /calories/1
   # GET /calories/1.json
   def show
