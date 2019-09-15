@@ -1,16 +1,39 @@
 
-<%= simple_form_for(@calory) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="columns">
+  <div class="column is-8 is-centered">
 
-  <div class="form-inputs">
-    <%= f.input :value %>
-    <%= f.input :type_value %>
-    <%= f.input :comment %>
-    <%= f.association :user %>
-  </div>
+  <%= simple_form_for(@calory) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <div class="control">
+        <%= f.input :value, 
+        required: true, input_html: { class: "input" }, 
+        wrapper: false, label_html: { class:"label" } %>
+      </div>
+      
+
+      <div class="control" style="width:150px">
+        <%= f.input :type_value, 
+        required: true, input_html: { class: "input" }, 
+        wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+
+      <div class="control" style="width:150px">
+        <%= f.input :comment, 
+        required: true, input_html: { class: "input" }, 
+        wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <br>
+      <%= f.button :submit ,class:"button is-success" %>
+      
+    </div>
+  <% end %>
+  <div>
+<div>

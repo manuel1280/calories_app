@@ -1,31 +1,29 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header do %>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Calories progress
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
 
-<h1>Calories</h1>
+  <div class="hero-body">
+      <div class="container">
+        <% @calories.each do |calory| %>
+          <div >
+            <div class="notification" style="width: 900px; margin:0px ", wrapper: false><%= calory.comment %></div>
+            <p class="tag is-info"><%= calory.type_value%>: <%= calory.value%></p>
+          
+            <% if calorie_author(calory) %>
+              <%= link_to 'Edit', edit_calorie_path(calory), class: "button is-small" %>
+              <%= link_to 'Delete', calory, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
+            <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Value</th>
-      <th>Type value</th>
-      <th>Comment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @calories.each do |calory| %>
-      <tr>
-        <td><%= calory.value %></td>
-        <td><%= calory.type_value %></td>
-        <td><%= calory.comment %></td>
-        <td><%= link_to 'Show', calory %></td>
-        <td><%= link_to 'Edit', edit_calory_path(calory) %></td>
-        <td><%= link_to 'Destroy', calory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Calory', new_calory_path %>
+        </div>
+        <br>
+        <% end %>
+    </div>
+  </div>
