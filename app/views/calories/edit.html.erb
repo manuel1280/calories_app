@@ -1,16 +1,9 @@
-<h1>Editing Calory</h1>
-
-<%= render 'form', calory: @calory %>
-
-<%= link_to 'Show', @calory %> |
-<%= link_to 'Back', calories_path %>
-
 <% content_for :header do %>
-<section class="hero is-success">
+<section class="hero is-info">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Editing calorie registration
+        Editing calory registration
       </h1>
     </div>
   </div>
@@ -20,7 +13,7 @@
 <div class="pv4">
     <%= render 'form', micropost: @calory %>
     <br>
-    <%= link_to 'Back', calories_path,class:"button" %>
+    <%= link_to 'Back', calories_path, class:"button" %>
 </div>
 
 

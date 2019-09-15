@@ -2,38 +2,42 @@
 <div class="columns">
   <div class="column is-8 is-centered">
 
-  <%= simple_form_for(@calory) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= simple_form_for(@calory) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-inputs">
-      <div class="control">
-        <%= f.input :value, 
-        required: true, input_html: { class: "input" }, 
-        wrapper: false, label_html: { class:"label" } %>
-      </div>
+      <div class="form-inputs">
+
+        <div class="control">
+            <%= f.input :comment, 
+            required: true, input_html: { class: "input" }, 
+            wrapper: false, label_html: { class:"label" } %>
+        </div>
       
+        <div class="control"style="width:100px">
+          <%= f.input :value, 
+          required: true, input_html: { class: "input" }, 
+          wrapper: false, label_html: { class:"label" } %>
+        </div>
+        
+        <label style="margin-top:5px"><strong>*Type of log</strong></label>
+        <div class="control has-icons-left" style="margin-top:5px">
+          <span class="select">
+            <%= f.input_field :type_value, collection: Calory::TYPE_VALUE, prompt: "Select type" %>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-tag"></i>
+          </span>
+        </div>
 
-      <div class="control" style="width:150px">
-      <%= f.input_field :type_value, 
-        collection: Calory::TYPE_VALUE, 
-        prompt: "Select type" %>
       </div>
-    </div>
 
-
-      <div class="control" style="width:150px">
-        <%= f.input :comment, 
-        required: true, input_html: { class: "input" }, 
-        wrapper: false, label_html: { class:"label" } %>
+      <div class="form-actions">
+        <br>
+        <%= f.button :submit ,class:"button is-info" %>
       </div>
-    </div>
-    
-    <div class="form-actions">
-      <br>
-      <%= f.button :submit ,class:"button is-success" %>
-      
-    </div>
-  <% end %>
+
+    <% end %>
+
   <div>
 <div>
