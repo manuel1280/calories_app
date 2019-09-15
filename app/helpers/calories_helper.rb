@@ -1,7 +1,7 @@
 module CaloriesHelper
 
-  def calorie_author(calorie)
-    user_signed_in? && current_user.id == calorie.user_id
+  def calory_author(calory)
+    user_signed_in? && current_user.id == calory.user_id
   end
 
 end
