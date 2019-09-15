@@ -4,10 +4,10 @@ one:
   value: 9.99
   type_value: MyString
   comment: MyText
-  user: one
+  user_id: 1
 
 two:
   value: 9.99
   type_value: MyString
   comment: MyText
-  user: two
+  user_id: 1
