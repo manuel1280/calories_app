@@ -1,5 +1,6 @@
 class CaloriesController < ApplicationController
   before_action :set_calory, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /calories
   # GET /calories.json
