@@ -21,17 +21,24 @@
       <p class="alert"><%= alert %></p>
     </div>
     <% end %>
+    
      <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
+      <% if user_signed_in? %>
         <%= link_to root_path, class:"navbar-item" do %>
           <h1 class="title is-5">Home</h1>
         <% end  %>
+        <%= link_to calories_path, class:"navbar-item" do %>
+          <h1 class="title is-5">my calories</h1>
+        <% end  %>
+      <% end %>
       <div class="navbar-burger burger" data-target="navbar">
         <span></span>
         <span></span>
         <span></span>
       </div>
     </div>
+    
 
       <div id="navbar" class="navbar-menu">
         <div class="navbar-end">
@@ -64,11 +71,13 @@
 
   <%= yield(:header) %>
 
+<% unless current_page?(root_path) %>
   <div class="container">
-
     <%= yield %>
-
   </div>
+  <% else %>
+  <%= yield %>
+<% end %>
 
   </body>
 </html>
