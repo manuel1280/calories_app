@@ -1,24 +1,25 @@
-<p id="notice"><%= notice %></p>
+  <div class="columns">
+    <div class="column is-8">
+      <p>
+        <strong>Comment:</strong>
+       <div class="notification" style="width: 900px; margin:0px ", wrapper: false>
+        <%= @calory.comment %>
+      </div>
 
-<p>
-  <strong>Value:</strong>
-  <%= @calory.value %>
-</p>
+        <strong>Value:</strong>
+      <div class="notification" style="width: 900px; margin:0px ", wrapper: false>
+        <%= @calory.value %>
+      </div>
 
-<p>
-  <strong>Type value:</strong>
-  <%= @calory.type_value %>
-</p>
+      <strong>Type value:</strong>
+      <div class="notification" style="width: 900px; margin:0px ", wrapper: false>
+        <%= @calory.type_value %>
+      </div>
+      </p>
+        <% if calory_author(@calory) %>
+          <%= link_to 'Edit', edit_calory_path(@calory), class: 'button' %>
+        <% end %>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @calory.comment %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @calory.user %>
-</p>
-
-<%= link_to 'Edit', edit_calory_path(@calory) %> |
-<%= link_to 'Back', calories_path %>
+      <%= link_to 'Back', calories_path , class: 'button'%>
+</div>
+</div>

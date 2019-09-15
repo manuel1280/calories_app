@@ -17,8 +17,8 @@
             <div class="notification" style="width: 900px; margin:0px ", wrapper: false><%= calory.comment %></div>
             <p class="tag is-info"><%= calory.type_value%>: <%= calory.value%></p>
           
-            <% if calorie_author(calory) %>
-              <%= link_to 'Edit', edit_calorie_path(calory), class: "button is-small" %>
+            <% if calory_author(calory) %>
+              <%= link_to 'Edit', edit_calory_path(calory), class: "button is-small" %>
               <%= link_to 'Delete', calory, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
             <% end %>
 
