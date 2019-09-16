@@ -5,7 +5,7 @@ class CaloriesController < ApplicationController
   # GET /calories
   # GET /calories.json
   def index
-    @calories = current_user.calories.all.order("created_at desc")
+    @calories = current_user.calories.order(:creted_at).page(params[:page]).per(15)
   end
   # GET /calories/1
   # GET /calories/1.json

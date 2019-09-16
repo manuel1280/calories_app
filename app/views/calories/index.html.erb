@@ -10,20 +10,39 @@
 </section>
 <% end %>
 
-  <div class="hero-body">
-      <div class="container">
+<div class="hero-body">
+  <div class="container">
+    <div class="table-container" style="width: 950px; padding-left:100px">
+    <%= paginate @calories, window: 2 %>
+    <br>
+    <br>
+      <table class="table is-narrow is-hoverable -row-hover-background-color primary" >
+      <thead>
+        <tr>
+          <th title="Comment">Comment</th>
+          <th title="Type">Type</th>
+          <th title="Value">Calories</th>
+          <th title="Action"></th>
+        </tr>
+      </thead>
         <% @calories.each do |calory| %>
-          <div >
-            <div class="notification" style="width: 900px; margin:0px ", wrapper: false><%= calory.comment %></div>
-            <p class="tag is-info"><%= calory.type_value%>: <%= calory.value%></p>
-          
-            <% if calory_author(calory) %>
+          <tbody>
+          <tr>
+            <td style="width: 600px;"><%= calory.comment %></td>
+            <td><%= calory.type_value %></td>
+            <td><%= calory.value %></td>
+            <td>
               <%= link_to 'Edit', edit_calory_path(calory), class: "button is-small" %>
               <%= link_to 'Delete', calory, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
-            <% end %>
-
-        </div>
-        <br>
+            </td>
+          </tr>
+          </tbody>
         <% end %>
+      </table>
     </div>
   </div>
+</div>
+
+
+
+
