@@ -22,7 +22,9 @@
           <th title="Comment">Comment</th>
           <th title="Type">Type</th>
           <th title="Value">Calories</th>
-          <th title="Action"></th>
+          <th title="Action">
+            <div class="tag is-link is-normal">Total registers <%= current_user.num_register%></div>
+          </th>
         </tr>
       </thead>
         <% @calories.each do |calory| %>
