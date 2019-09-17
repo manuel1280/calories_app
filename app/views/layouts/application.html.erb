@@ -12,7 +12,8 @@
 
   <body class="<%= yield (:body_class) %>">
     <% if flash[:notice] %>
-      <div class="notification is-success global-notification">
+      <div id="nota" class="notification is-success global-notification">
+        <button class="delete" onclick ="ocultar()"></button>
         <p class="notice"><%= notice %></p>
       </div>
     <% end %>
@@ -30,6 +31,7 @@
         <% end  %>
         <%= link_to calories_path, class:"navbar-item" do %>
           <h1 class="title is-5">my calories</h1>
+          
         <% end  %>
       <% end %>
       <div class="navbar-burger burger" data-target="navbar">
@@ -80,4 +82,9 @@
 <% end %>
 
   </body>
+  <script>
+    function ocultar(){
+      document.getElementById('nota').style.display = 'none';
+    }
+  </script>
 </html>
