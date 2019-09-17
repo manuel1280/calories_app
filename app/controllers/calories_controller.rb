@@ -6,7 +6,10 @@ class CaloriesController < ApplicationController
   # GET /calories
   # GET /calories.json
   def index
-    @calories = current_user.calories.order("created_at desc").page(params[:page]).per(15)
+    current_calories = Calory.where("user_id = #{current_user.id}")
+    show_calories = current_calories.where(query_to_search)
+    @calories = show_calories.order("updated_at desc").page(params[:page]).per(15)
+    # @calories = current_user.calories.order("created_at desc").page(params[:page]).per(15)
   end
   # GET /calories/1
   # GET /calories/1.json
@@ -64,6 +67,7 @@ class CaloriesController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_calory
@@ -72,11 +76,30 @@ class CaloriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calory_params
-      params.require(:calory).permit(:value, :type_value, :comment, :user_id)
+      params.require(:calory).permit(:value, :type_value, :comment, :user_id, :search_date, :search_comment)
     end
 
     def update_reister_numbers_to_user
       new_number = current_user.calories.pluck(:id).size
       User.find(current_user.id).update(num_register: new_number)
     end
+
+    def query_to_search
+      search_comment = params[:search_comment]
+      search_date = params[:search_date]
+      user=current_user.id
+
+      if !search_date.blank? and !search_comment.blank?
+        result = "updated_at LIKE '#{search_date}%' and comment LIKE '%#{search_comment}%'"
+        elsif !search_comment.blank?
+          result = "comment LIKE '%#{search_comment}%'"
+        elsif !search_date.blank?
+          result = "updated_at LIKE '#{search_date}%'"
+        else
+          result = "user_id = #{current_user.id}"
+      end
+      
+      return result
+    end
+
 end

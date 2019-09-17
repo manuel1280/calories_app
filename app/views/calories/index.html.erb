@@ -12,9 +12,19 @@
 
 <div class="hero-body">
   <div class="container">
-    <div class="table-container" style="width: 950px; padding-left:100px">
+    <div class="table-container" style="width: 1000px; padding-left:50px">
+
+    <div class="container">
+      <%= form_tag(calories_path, method: :get) do %>
+        <div style = "width:200px; float:left">
+        <%= text_field_tag :search_date, params[:search_date],placeholder: "ejm. 2019-01-01", class:"input is-link is-small" %></div>
+        <div style = "width:200px; float:left">
+        <%= text_field_tag :search_comment, params[:search_comment], placeholder: "ejm. tomatoe ", class:"input is-link is-small" %></div>
+        <%= submit_tag ("Search"), class: 'button is-link is-small'%>
+      <% end %>
+    </div>
+    
     <%= paginate @calories, window: 2 %>
-    <br>
     <br>
       <table class="table is-narrow is-hoverable -row-hover-background-color primary" >
       <thead>
@@ -22,6 +32,7 @@
           <th title="Comment">Comment</th>
           <th title="Type">Type</th>
           <th title="Value">Calories</th>
+          <th title="Date">Date</th>
           <th title="Action">
             <div class="tag is-link is-normal">Total registers <%= current_user.num_register%></div>
           </th>
@@ -33,6 +44,7 @@
             <td style="width: 600px;"><%= calory.comment %></td>
             <td><%= calory.type_value %></td>
             <td><%= calory.value %></td>
+            <td><%= calory.updated_at.strftime("%Y-%m-%d") %></td>
             <td>
               <%= link_to 'Edit', edit_calory_path(calory), class: "button is-small" %>
               <%= link_to 'Delete', calory, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
