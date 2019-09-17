@@ -13,28 +13,38 @@ months = 4
 days = 30
 max_daily_posts = 5
 
+
 def type_value_helper()
     type=rand(0..1)
     type == 0 ? "won" : "lost"
 end
 
 def comment_helper(type)
-    if type == "won"
-        comment="I ate #{Faker::Food.description}"
-    else
-        comment="I #{Faker::Verb.past}"
-    end
+    type == "won" ? "I ate #{Faker::Food.description}" : "I #{Faker::Verb.past}"
 end
 
-def create_user(iteration)
-    User.create!(email: "user#{iteration}@ejemplo.com", password: "123456", num_register: iteration)
+def create_user(user_i)
+    User.create!(email: "user#{user_i}@ejemplo.com", password: "123456")
+end
+
+
+def update_user(user_id)
+    total_post = Calory.where("user_id = #{user_id}").count
+    user = User.find(user_id)
+    user.update(num_register: total_post)
 end
 
 def create_post(month,day,user)
     value = rand (500..1000)
     type = type_value_helper()
     comment = comment_helper(type)
-    Calory.create(value: value, type_value: type, comment: comment, user_id: user, created_at: "2019-#{month}-#{day} 19:39:05", updated_at: "2019-#{month}-#{day} 19:39:05")  
+    Calory.create(
+        value: value, 
+        type_value: type, 
+        comment: comment, 
+        user_id: user, 
+        created_at: "2019-#{month}-#{day} 19:39:05", 
+        updated_at: "2019-#{month}-#{day} 19:39:05")
 end
 
 # main function
@@ -48,4 +58,8 @@ for user in (1..users)
             end
         end
     end
+end
+
+for user in (1..users)
+    update_user(user)
 end
