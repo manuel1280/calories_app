@@ -12,7 +12,7 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-
+  config.action_mailer.default_url_options = {: host => 'https://caloric-progress.herokuapp.com'} 
   # Code is not reloaded between requests.
   config.cache_classes = true
 
