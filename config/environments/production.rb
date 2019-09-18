@@ -1,18 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
-    :user_name => ENV['johan_buitrago'],
-    :password => ENV['sanitec1280'],
-    :domain => 'https://caloric-progress.herokuapp.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
-  }
 
-  config.action_mailer.default_url_options = { host: 'https://caloric-progress.herokuapp.com' } 
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -80,6 +68,21 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'https://caloric-progress.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+        :address => 'smtp.sendgrid.net',
+        :port => '587',
+        :authentication => :plain,
+        :user_name => ENV['johan_buitrago'],
+        :password => ENV['sanitec1280'],
+        :domain => 'heroku.com',
+        :enable_starttls_auto => true
+  }
+
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
