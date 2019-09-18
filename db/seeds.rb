@@ -8,10 +8,10 @@
 
 require 'faker'
 
-users = 50
-months = 4
-days = 30
-max_daily_posts = 5
+users = 2
+months = 1
+days = 3
+max_daily_posts = 4
 
 
 def type_value_helper()
