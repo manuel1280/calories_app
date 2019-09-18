@@ -1,5 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['johan_buitrago'],
+    :password => ENV['sanitec1280'],
+    :domain => 'https://caloric-progress.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -92,5 +104,4 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.actionmailer.defaulturl_options = { :host => 'https://caloric-progress.herokuapp.com' } 
 end
