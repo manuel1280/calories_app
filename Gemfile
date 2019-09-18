@@ -12,6 +12,9 @@ gem "bulma-rails"
 gem 'kaminari'
 gem 'faker'
 gem 'sendgrid-ruby'
+gem 'morrisjs-rails', git: 'https://github.com/beanieboi/morrisjs-rails.git'
+gem 'jquery-rails'
+gem 'raphael-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
