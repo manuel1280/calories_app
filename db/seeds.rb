@@ -8,8 +8,9 @@
 
 require 'faker'
 
-users = 50
-months = 4
+users = 2
+month_end = 9
+month_init = 5
 days = 30
 max_daily_posts = 5
 
@@ -50,7 +51,7 @@ end
 # main function
 for user in (1..users)
     create_user(user)
-    for month in (1..months)
+    for month in (month_init..month_end)
         for day in (1..days)
             posts=rand(1..max_daily_posts)
             for post in (1..posts)

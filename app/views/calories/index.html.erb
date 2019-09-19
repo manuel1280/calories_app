@@ -10,12 +10,15 @@
 </section>
 <% end %>
 
-<div id="grafica" style="height: 250px;"></div>
 
 <div class="hero-body">
+<div style ="width: 900px; padding-left:200px">
+  <%= content_tag :div, "", id: "calories_progress", data: {calories: calories_data } %>
+</div>
+<br>
+<br>
   <div class="container">
     <div class="table-container" style="width: 1010px; padding-left:50px">
-
     <div class="container">
       <%= form_tag(calories_path, method: :get) do %>
         <div style = "width:200px; float:left">
