@@ -15,6 +15,8 @@ gem 'sendgrid-ruby'
 gem 'morrisjs-rails', git: 'https://github.com/beanieboi/morrisjs-rails.git'
 gem 'jquery-rails'
 gem 'raphael-rails'
+gem 'mailgun-ruby', '~>1.1.6'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

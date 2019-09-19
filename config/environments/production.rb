@@ -69,16 +69,13 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
- 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandboxe4b2750683664fdf9d0493d5d5fc8598.mailgun.org	",
-    :user_name => "komodocr7@gmail.com",
-    :password => "MYPASSWORD"
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: '224dd94741a072196095246dedb45b97-7bce17e5-50787df9',
+    domain: 'mydomain.com',
   }
+# no tiene que ser Heroku, pero se entiende la idea. 
+config.action_mailer.default_url_options = {: host => 'calories-progress.herokuapp.com'} 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
