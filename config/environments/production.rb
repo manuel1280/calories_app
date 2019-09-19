@@ -74,8 +74,6 @@ Rails.application.configure do
     api_key: '224dd94741a072196095246dedb45b97-7bce17e5-50787df9',
     domain: 'mydomain.com',
   }
-# no tiene que ser Heroku, pero se entiende la idea. 
-config.action_mailer.default_url_options = {: host => 'calories-progress.herokuapp.com'} 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
