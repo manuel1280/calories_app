@@ -8,9 +8,9 @@
 
 require 'faker'
 
-users = 3
-months = 1
-days = 4
+users = 2
+months = 3
+days = 5
 max_daily_posts = 4
 
 

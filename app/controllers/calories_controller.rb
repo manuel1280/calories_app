@@ -8,7 +8,7 @@ class CaloriesController < ApplicationController
   def index
     current_calories = Calory.where("user_id = #{current_user.id}")
     show_calories = current_calories.where(query_to_search)
-    @calories = show_calories.order("updated_at desc").page(params[:page]).per(15)
+    @calories = show_calories.order("created_at desc").page(params[:page]).per(15)
     # @calories = current_user.calories.order("created_at desc").page(params[:page]).per(15)
   end
   # GET /calories/1
@@ -90,11 +90,11 @@ class CaloriesController < ApplicationController
       user=current_user.id
 
       if !search_date.blank? and !search_comment.blank?
-        result = "updated_at LIKE '#{search_date}%' and comment LIKE '%#{search_comment}%'"
+        result = "date(created_at) LIKE '#{search_date}%' and comment LIKE '%#{search_comment}%'"
         elsif !search_comment.blank?
           result = "comment LIKE '%#{search_comment}%'"
         elsif !search_date.blank?
-          result = "updated_at LIKE '#{search_date}%'"
+          result = "date(created_at) LIKE '#{search_date}%'"
         else
           result = "user_id = #{current_user.id}"
       end
