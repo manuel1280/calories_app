@@ -44,8 +44,8 @@ def create_post(month,day,user)
         type_value: type, 
         comment: comment, 
         user_id: user, 
-        created_at: "2019-#{month}-#{day} 19:39:05", 
-        updated_at: "2019-#{month}-#{day} 19:39:05")
+        created_at: "2019-#{month}-#{day} 19:39:05 -0500", 
+        updated_at: "2019-#{month}-#{day} 19:39:05 -0500")
 end
 
 # main function
