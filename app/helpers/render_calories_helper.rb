@@ -2,14 +2,20 @@ module RenderCaloriesHelper
 
   def calories_data
 
+    def complete_nil_fields(fields,total_c)
+      to_fill = total_c.count - fields.count
+      to_fill.times { fields += [""]}
+      return fields
+    end
+
     time_ago = 1.months.ago.to_date
     user = current_user.id
     calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' GROUP BY created_at;")
     calories_won=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'won' GROUP BY created_at;")
     calories_lost=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'lost' GROUP BY created_at;")
     show_calories=[]
-    calories_won=complete_nil_fields(calories_won)
-    calories_lost=complete_nil_fields(calories_lost)
+    calories_won=complete_nil_fields(calories_won,calories)
+    calories_lost=complete_nil_fields(calories_lost,calories)
 
     for day in (0...calories.count)
       calories_won[day].empty? ? calory_won = 0 : calory_won = calories_won[day][1]
@@ -18,11 +24,7 @@ module RenderCaloriesHelper
     end
 
     return show_calories
-    def complete_nil_fields(fields)
-      to_fill = calories.count - fields.count
-      to_fill.times { fields += [""]}
-      return fields
-    end
+
   end
 
 
