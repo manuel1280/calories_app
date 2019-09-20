@@ -4,7 +4,7 @@ module RenderCaloriesHelper
 
     def complete_nil_fields(fields,total_c)
       to_fill = total_c.count - fields.count
-      to_fill.times { fields += [""]}
+      to_fill.times { fields << ""}
       return fields
     end
 
