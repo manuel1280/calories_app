@@ -91,11 +91,11 @@ class CaloriesController < ApplicationController
       user=current_user.id
 
       if !search_date.blank? and !search_comment.blank?
-        result = "date(created_at) LIKE '#{search_date}%' and comment LIKE '%#{search_comment}%'"
+        result = "created_at LIKE '#{search_date}%' and comment LIKE '%#{search_comment}%'"
         elsif !search_comment.blank?
           result = "comment LIKE '%#{search_comment}%'"
         elsif !search_date.blank?
-          result = "date(created_at) LIKE '#{search_date}%'"
+          result = "created_at LIKE '#{search_date}%'"
         else
           result = "user_id = #{current_user.id}"
       end
