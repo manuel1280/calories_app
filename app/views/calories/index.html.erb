@@ -12,9 +12,9 @@
 
 
 <div class="hero-body">
-<%# <div style ="width: 1010px; padding-left:100px"> %>
-  <%# <%= content_tag :div, "", id: "calories_progress", data: {calories: calories_data } %>
-<%# </div> %>
+<div style ="width: 1010px; padding-left:100px">
+  <%= content_tag :div, "", id: "calories_progress", data: {calories: calories_data } %>
+</div>
 <br>
 <br>
   <div class="container">
@@ -50,7 +50,7 @@
             <td style="width: 600px;"><%= calory.comment %></td>
             <td><%= calory.type_value %></td>
             <td><%= calory.value %></td>
-            <td><%= calory.updated_at.strftime("%d-%m-%Y") %></td>
+            <td><%= calory.created_at.strftime("%d-%m-%Y") %></td>
             <td>
               <%= link_to 'Edit', edit_calory_path(calory), class: "button is-small" %>
               <%= link_to 'Delete', calory, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
