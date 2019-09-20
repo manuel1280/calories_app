@@ -2,12 +2,6 @@ module RenderCaloriesHelper
 
   def calories_data
 
-    def complete_nil_fields(fields)
-      to_fill = calories.count - fields.count
-      to_fill.times { fields += [""]}
-      return fields
-    end
-
     time_ago = 1.months.ago.to_date
     user = current_user.id
     calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' GROUP BY created_at;")
@@ -24,7 +18,11 @@ module RenderCaloriesHelper
     end
 
     return show_calories
-  
+    def complete_nil_fields(fields)
+      to_fill = calories.count - fields.count
+      to_fill.times { fields += [""]}
+      return fields
+    end
   end
 
 
