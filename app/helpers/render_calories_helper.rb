@@ -4,9 +4,9 @@ module RenderCaloriesHelper
 
     time_ago = 1.months.ago.to_date
     user = current_user.id
-    calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' GROUP BY created_at;")
-    calories_won=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'won' GROUP BY created_at;")
-    calories_lost=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'lost' GROUP BY created_at;")
+    calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE GROUP BY created_at;")
+    calories_won=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE and type_value = 'won' GROUP BY created_at;")
+    calories_lost=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE and type_value = 'lost' GROUP BY created_at;")
     show_calories=[]
 
     for day in (0...calories.count)
