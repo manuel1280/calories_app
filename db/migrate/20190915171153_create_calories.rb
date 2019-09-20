@@ -6,7 +6,7 @@ class CreateCalories < ActiveRecord::Migration[5.2]
       t.text :comment
       t.integer :user_id
 
-      t.timestamps 'timestamp with time zone'
+      t.timestamps
     end
   end
 end

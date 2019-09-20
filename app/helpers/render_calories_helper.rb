@@ -2,17 +2,25 @@ module RenderCaloriesHelper
 
   def calories_data
 
+    def complete_nil_fields(fields)
+      to_fill = calories.count - fields.count
+      to_fill.times { fields += [""]}
+      return fields
+    end
+
     time_ago = 1.months.ago.to_date
     user = current_user.id
-    calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE GROUP BY created_at;")
-    calories_won=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE and type_value = 'won' GROUP BY created_at;")
-    calories_lost=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}'::TIMESTAMP::DATE and type_value = 'lost' GROUP BY created_at;")
+    calories=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' GROUP BY created_at;")
+    calories_won=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'won' GROUP BY created_at;")
+    calories_lost=ActiveRecord::Base.connection.execute("SELECT created_at, SUM(value) FROM calories WHERE user_id = #{user} and created_at > '#{time_ago}' and type_value = 'lost' GROUP BY created_at;")
     show_calories=[]
+    calories_won=complete_nil_fields(calories_won)
+    calories_lost=complete_nil_fields(calories_lost)
 
     for day in (0...calories.count)
-      calories_won[day].nil? ? calory_won = 0 : calory_won = calories_won[day][1]
-      calories_lost[day].nil? ? calory_lost = 0 : calory_lost = calories_lost[day][1]
-      show_calories << {created_at: calories[day][0] , calories_won: calory_won, calories_lost: calory_lost}
+      calories_won[day].empty? ? calory_won = 0 : calory_won = calories_won[day][1]
+      calories_lost[day].emty? ? calory_lost = 0 : calory_lost = calories_lost[day][1]
+      show_calories << {created_at: calories[day][0].to_date , calories_won: calory_won, calories_lost: calory_lost}
     end
 
     return show_calories
