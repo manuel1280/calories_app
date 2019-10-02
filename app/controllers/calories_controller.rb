@@ -95,7 +95,7 @@ class CaloriesController < ApplicationController
         elsif !search_comment.blank?
           result = "comment LIKE '%#{search_comment}%'"
         elsif !search_date.blank?
-          result = "created_at LIKE::TIMESTAMP::DATE '#{search_date}%'"
+          result = "created_at::TIMESTAMP::DATE = '#{search_date}'"
         else
           result = "user_id = #{current_user.id}"
       end
