@@ -1,0 +1,35 @@
+<% content_for :header do %>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Share my progress
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+
+      <%= form_tag(send_progress_email_path, method: :post) do %>
+        <label> <strong>*Writte an email to share </strong></label>
+        <%= text_field :email, params[:email], type: :email, class:"input"%>
+        <br>
+        <br>
+        <%= submit_tag ("Send"), class: 'button is-link' %>
+      <% end %>
+
+        <div>
+            <br>
+            <br>
+            <%= link_to 'Back', calories_path, class:"button" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

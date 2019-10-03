@@ -1,7 +1,7 @@
 module RenderCaloriesHelper
 
   def calories_data
-    time_ago = 1.months.ago
+    time_ago = 1.weeks.ago
     calories_by_day = current_user.calories.total_grouped_by_day(time_ago)
     calories_won_by_day = current_user.calories.where(type_value: "won").total_grouped_by_day(time_ago)
     calories_lost_by_day = current_user.calories.where(type_value: "lost").total_grouped_by_day(time_ago)

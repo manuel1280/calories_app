@@ -64,7 +64,9 @@ class CaloriesController < ApplicationController
     end
   end
 
- 
+  def send_progress
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
