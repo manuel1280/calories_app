@@ -2,25 +2,22 @@ module RenderCaloriesHelper
 
   def calories_data
     time_ago = 1.months.ago
-    calories_by_day = total_grouped_by_day(time_ago)
+    calories_by_day = current_user.calories.total_grouped_by_day(time_ago)
+    calories_won_by_day = current_user.calories.where(type_value: "won").total_grouped_by_day(time_ago)
+    calories_lost_by_day = current_user.calories.where(type_value: "lost").total_grouped_by_day(time_ago)
 
     (time_ago.to_date..Date.today).map do |day|
-      if calories_by_day[day].nil?
-        curr_value = 0
-      else
-        curr_value = calories_by_day[day].first.try(:total_value) || 0
-      end
-       {created_at: day, value: curr_value}
+      {
+      created_at: day,
+      value: complete_nil_fields(calories_by_day[day]),
+      won: complete_nil_fields(calories_won_by_day[day]),
+      lost: complete_nil_fields(calories_lost_by_day[day])
+      }
     end
   end
 
-    def total_grouped_by_day(time_ago)
-        # calories = current_user.calories.where(created_at: time_ago.beginning_of_day..Time.now)
-        calories = current_user.calories.where("created_at > ?", time_ago.to_date)
-        calories = calories.group("created_at")
-        calories = calories.select("created_at, sum(value) as total_value")
-        calories.group_by { |c| c.created_at.to_date}
-        
-    end
+  def complete_nil_fields(calory)
+    calory.nil? ? 0 : calory.first.try(:total_value)
+  end
 
 end
