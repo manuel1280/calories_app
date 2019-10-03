@@ -29,9 +29,9 @@ new Morris.Line({
     // The name of the data record attribute that contains x-values.
     xkey: 'created_at',
     // A list of names of data record attributes that contain y-values.
-    ykeys: ['calories_won','calories_lost'],
+    ykeys: ['value'],
     // Labels for the ykeys -- will be displayed when you hover over the
     // chart.
-    labels: ['calories won', 'calories lost']
+    labels: ['calories']
   });
 });
