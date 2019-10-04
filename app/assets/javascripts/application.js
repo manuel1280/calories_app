@@ -35,3 +35,7 @@ new Morris.Line({
     labels: ['total', 'calories won', 'calories lost']
   });
 });
+
+function hide_flash(){
+  document.getElementById('notify').style.display = 'none';
+}
