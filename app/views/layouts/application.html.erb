@@ -12,15 +12,16 @@
 
   <body class="<%= yield (:body_class) %>">
     <% if flash[:notice] %>
-      <div id="nota" class="notification is-success global-notification">
-        <button class="delete" onclick ="ocultar()"></button>
+      <div id="notify" class="notification is-success global-notification">
+        <button class="delete" onclick ="hide_flash()"></button>
         <p class="notice"><%= notice %></p>
       </div>
     <% end %>
     <% if flash[:alert] %>
-    <div class="notification is-danger global-notification">
-      <p class="alert"><%= alert %></p>
-    </div>
+      <div id="notify" class="notification is-danger global-notification">
+        <button class="delete" onclick ="hide_flash()"></button>
+        <p class="alert"><%= alert %></p>
+      </div>
     <% end %>
     
      <nav class="navbar is-info" role="navigation" aria-label="main navigation">
