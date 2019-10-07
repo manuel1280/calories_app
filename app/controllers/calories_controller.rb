@@ -6,7 +6,9 @@ class CaloriesController < ApplicationController
   # GET /calories
   # GET /calories.json
   def index
-    @calories = current_user.calories.where(query_to_search).order("created_at desc").page(params[:page]).per(15)
+    date = params[:search_date]
+    comment = params[:search_comment]
+    @calories = current_user.calories.search(date,comment).page(params[:page]).per(15)
   end
   # GET /calories/1
   # GET /calories/1.json
@@ -82,21 +84,5 @@ class CaloriesController < ApplicationController
       User.find(current_user.id).update(num_register: new_number)
     end
 
-    def query_to_search
-      search_comment = params[:search_comment]
-      search_date = params[:search_date]
-
-      if !search_date.blank? and !search_comment.blank?
-        result = ["created_at::TIMESTAMP::DATE = ? and comment LIKE ?", search_date ,"%#{search_comment}%"]
-        elsif !search_comment.blank?
-          result = ["comment LIKE ?", "%#{search_comment}%"]
-        elsif !search_date.blank?
-          result = ["created_at::TIMESTAMP::DATE = ?", search_date]
-        else
-          result = ["user_id = ?", current_user.id]
-      end
-      
-      return result
-    end
 
 end
