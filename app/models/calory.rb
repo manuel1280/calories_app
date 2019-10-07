@@ -7,7 +7,7 @@ class Calory < ApplicationRecord
 
     default_scope {order("created_at desc")}
 
-    TYPE_VALUE = %w{ Lost Won }
+    TYPE_VALUE = %w{ lost won }
 
     def self.total_grouped_by_day(time_ago)
         # calories = current_user.calories.where(created_at: time_ago.beginning_of_day..Time.now)
